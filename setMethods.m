@@ -1,11 +1,10 @@
 %% Methods & Settings
 % Script for setting algorithms to run
 %
-% Minsu Cho, Jungmin Lee, and Kyoung Mu Lee, 
-% Reweighted Random Walks for Graph Matching, 
-% Proc. European Conference on Computer Vision (ECCV), 2010
-% http://cv.snu.ac.kr/research/~RRWM/
-% Updated at Nov 1st, 2011
+% Rui Wang, Dong Liang, Wei Zhang, Xiaochun Cao
+% Semantic Correspondence with Geometric Structure Analysis,
+% TIP under submission
+
 
 % You can add an algorithm following the script below
 %nMethods = 1;
@@ -217,7 +216,7 @@ if 1
     methods(nMethods).marker = 'p';
 end
 %% SMCM Suh et al. ECCV 2012
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @SMCM;
     methods(nMethods).variable = {'affinityMatrix', 'group1', 'group2'};
@@ -229,7 +228,7 @@ if 1
     methods(nMethods).marker = 'p';
 end
 %% MatchDR
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @MatchDR;
     methods(nMethods).variable = {'G1', 'G2', 'X0', 'temperature'};
@@ -240,7 +239,7 @@ if 1
     methods(nMethods).marker = 'o';
 end
 %% myfun
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @myfun;
     methods(nMethods).variable = {'G1', 'G2', 'X0', 'C', 'temperature'};

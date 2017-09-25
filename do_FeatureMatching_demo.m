@@ -1,16 +1,8 @@
-% MATLAB demo code of Reweighted Random Walks Graph Matching of ECCV 2010
+% MATLAB demo code of Semantic Correspondence with Geometric Structure Analysis
 %
-% Minsu Cho, Jungmin Lee, and Kyoung Mu Lee,
-% Reweighted Random Walks for Graph Matching,
-% Proc. European Conference on Computer Vision (ECCV), 2010
-% http://cv.snu.ac.kr/research/~RRWM/
-
-%% MATLAB demo code for image matching by graph matching algorithms
-close all; clear ; %clc;
-setPath;    % path addition code goes here
-setMethods; % algorithms go here (for comparison)
-
-addpath('.\utils_FM')
+% Rui Wang, Dong Liang, Wei Zhang, Xiaochun Cao
+% Semantic Correspondence with Geometric Structure Analysis,
+% TIP under submission
 
 %% Options & parameters for experiment
 bDisplayMatching = 0;            % Display image feature matching results or not
@@ -18,9 +10,7 @@ bDisplayCurl = 0;                      % Display curl or not
 bDisplayLabel = 0;                    % Display label or not
 extrapolate_thres = 15;          % Extrapolation of matches for flexible evaluation
 affinity_max = 50;               % maximum value of affinity
-matchDataPath = '.\matchData4\';  % Path for 'mat' files
-rhoset = [0, 0.05, 0.1, 0.15, 0.2, 0.4, 0.7, 1];
-alphaset = 0:0.2:1;
+matchDataPath = './matchData4/';  % Path for 'mat' files
 % 3. building;
 % 4. willow;
 % 5. car&moterbike;
@@ -29,14 +19,14 @@ alphaset = 0:0.2:1;
 
 %% Storage for Matching Results
 fileList = dir([matchDataPath '*.mat']);      % Load all 'mat' files
+accuracy = zeros(length(fileList), nMethods); % Matching accuracy
+score = zeros(length(fileList), nMethods);    % Objective score
+time = zeros(length(fileList), nMethods);     % Running time
+X = cell(length(fileList), nMethods);         % Soft assignment
+Xraw = cell(length(fileList), nMethods);      % Hard assignmen
 
 %% Image Matching Loop
-accuracy = zeros(length(rhoset),6,length(fileList)); % Matching accuracy
-time = zeros(length(rhoset),6,length(fileList));     % Running time
-X = cell(length(rhoset),6,length(fileList));         % Soft assignment
-Xraw = cell(length(rhoset),6,length(fileList));      % Hard assignment
 for cImg = 1:length(fileList)
-    
     
     clear cdata GT; close all
     %% Load match data (cdata)
@@ -124,7 +114,6 @@ for cImg = 1:length(fileList)
     % Algorithm evaluation
     for cMethod = 1:nMethods
         
-        
         if sum(cdata.X0(:)) < cdata.nP1 || ~strcmp(func2str(methods(cMethod).fhandle), 'MatchDR')
             tmp = 0:cdata.nP2:cdata.nP2*(cdata.nP1-1);
             ind = randperm(cdata.nP2,cdata.nP1);
@@ -133,7 +122,7 @@ for cImg = 1:length(fileList)
             cdata.X0(tmp) = 1;
             cdata.X0 = cdata.X0';
         end
-        
+
         [accuracy(cImg,cMethod) score(cImg,cMethod) time(cImg,cMethod) X{cImg,cMethod} Xraw{cImg,cMethod} TO_X0] ...
             = wrapper_FM(methods(cMethod), cdata);
         cdata.X0 = TO_X0;
@@ -142,7 +131,8 @@ for cImg = 1:length(fileList)
         if bDisplayMatching
             str = [methods(cMethod).strName ...
                 '  Error rate: ' num2str(accuracy(cImg, cMethod)) ...
-                ' (' num2str(accuracy(cImg,cMethod)*sum(cdata.GTbool)) '/' num2str(sum(cdata.GTbool)) ')'];
+                ' (' num2str(accuracy(cImg,cMethod)*sum(cdata.GTbool)) '/' num2str(sum(cdata.GTbool)) ')' ...
+                '  Score: ' num2str(score(cImg, cMethod)) ];
             figure('NumberTitle', 'off', 'Name', str);
             displayFeatureMatching(cdata, X{cImg,cMethod}, cdata.GTbool, methods(cMethod).strName, ...
                 accuracy(cImg,cMethod), bDisplayLabel, bDisplayCurl);

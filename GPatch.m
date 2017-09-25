@@ -1,3 +1,9 @@
+% Curl calculation
+%
+% Rui Wang, Dong Liang, Wei Zhang, Xiaochun Cao
+% Semantic Correspondence with Geometric Structure Analysis,
+% TIP under submission
+
 function C = GPatch(IM, X, Y, varargin)
 X = round(X);Y = round(Y);C = zeros(size(X));
 if isempty(varargin)

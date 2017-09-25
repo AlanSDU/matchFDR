@@ -1,23 +1,24 @@
+% MATLAB demo code of Semantic Correspondence with Geometric Structure Analysis
+%
+% Rui Wang, Dong Liang, Wei Zhang, Xiaochun Cao
+% Semantic Correspondence with Geometric Structure Analysis,
+% TIP under submission
+
+
 function [X_min] = myfun(D1, D2, X0, C, temperature)
 
-% KMax = 20;
-% lambda = 0;
 C = [C{1},C{2}];
-beta = 1;%%%
+beta = 1;
 alpha = 0.2;
 rho = 0.2;
-% lambda = (mean(D1(:))+mean(D2(:)))/2; lambda1 = lambda; lambda2 = lambda;
 lambda1 = mean(D1(:));
 lambda2 = mean(D2(:));
-% lambda1 = 0;lambda2 = 0;
 num1 = size(D1, 1);
 num2 = size(D2, 1);
 D1 = D1 + diag(sum(D1, 2)) + lambda1;
 D2 = D2 + diag(sum(D2, 2)) + lambda2;
 X0 = reshape(X0, num1, num2);X0 = X0';
 Q = @(x) (x' * D1 * x) ./ D2;
-% J = @(x) trace((Q(x) - sum(sum(Q(x)))/(sum(x(:))^2))' * (Q(x) - sum(sum(Q(x)))/(sum(x(:))^2)));
-% J = @(x) trace((Q(x) - sum(sum(Q(x)))/(sum(x(:))^2).*(Q(x)>0))' * (Q(x) - sum(sum(Q(x)))/(sum(x(:))^2).*(Q(x)>0)));
 J = @(x) trace((Q(x) - sum(sum(Q(x)))/(sum(x(:))^2).*(Q(x)>0))' * (Q(x) - sum(sum(Q(x)))/(sum(x(:))^2).*(Q(x)>0))) + alpha * sum(sum(x)) ...
     + beta * norm(x*C(:,1) - C(:,2))^2;
 
