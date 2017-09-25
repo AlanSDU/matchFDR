@@ -6,14 +6,18 @@ Rui Wang, Dong Liang, Wei Zhang, Xiaochun Cao
 Semantic Correspondence with Geometric Structure Analysis,
 TIP under submission
 
-written by Dong liang, 2017
+written by Dong Liang, 2017
 
-Date: 22/09/2017
-Version: 0.1
+* Update
+	The code was updated to run on linux.
+	Note that the algorithm SMCM under comparison is not avaliable in linux as the auther only release their work in a .mexw way. However, you can test it in windows.
+
+Date: 25/09/2017
+Version: 0.2
 
 1. Overview
 
-do_FeatureMatching_demo.m   : main script for feature matching demo
+run.m   : main script for feature matching demo
 
 If you want to add your own algorithm for comparison, three steps are required:
 1. Create 'YOUR_ALGORITHM_NAME' folder in 'Methods' folder. Then put your code in it.
