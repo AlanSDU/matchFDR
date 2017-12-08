@@ -317,7 +317,7 @@ if 1
     methods(nMethods).marker = 'p';
 end
 %% fgmU
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @fgmU;
     methods(nMethods).variable = {'KP', 'KQ', 'Ct', 'gphs', 'parFGM_U'};
@@ -328,7 +328,7 @@ if 1
     methods(nMethods).marker = 'o';
 end
 %% MatchDR
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @MatchDR;
     methods(nMethods).variable = {'G1', 'G2', 'X0', 'temperature'};
@@ -339,7 +339,7 @@ if 1
     methods(nMethods).marker = 'o';
 end
 %% myfun
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @myfun;
     methods(nMethods).variable = {'G1', 'G2', 'X0', 'C', 'temperature'};
@@ -350,7 +350,7 @@ if 1
     methods(nMethods).marker = 'o';
 end
 %% fgmD
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @fgmD;
     methods(nMethods).variable = {'KP', 'KQD', 'Ct', 'gphDs', 'parFGM_G'};
@@ -361,7 +361,7 @@ if 1
     methods(nMethods).marker = 'p';
 end
 %% MatchDR
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @MatchDR;
     methods(nMethods).variable = {'G1', 'G2', 'X0', 'temperature'};
@@ -372,7 +372,7 @@ if 1
     methods(nMethods).marker = 'o';
 end
 %% myfun
-if 1
+if 0
     nMethods = nMethods + 1;
     methods(nMethods).fhandle = @myfun;
     methods(nMethods).variable = {'G1', 'G2', 'X0', 'C', 'temperature'};

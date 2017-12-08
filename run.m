@@ -7,4 +7,6 @@ setMethods; % algorithms go here (for comparison)
 
 addpath('./utils_FM')
 
+addpath(genpath('./matchData'))
+
 do_FeatureMatching_demo

@@ -9,8 +9,9 @@ TIP under submission
 written by Dong Liang, 2017
 
 * Update
-	The code was updated to run on linux.
-	Note that the algorithm SMCM under comparison is not avaliable in linux as the auther only release their work in a .mexw way. However, you can test it in windows.
+	1. The code was updated to run on linux.
+	    Note that the algorithm SMCM under comparison is not avaliable in linux as the auther only release their work in a .mexw way. However, you can test it in windows.
+    2. The method FGM is off in the default setting. You can turn it on in setMethods.m if your linux support libstdc++.
 
 Date: 25/09/2017
 Version: 0.2
@@ -18,6 +19,7 @@ Version: 0.2
 1. Overview
 
 run.m   : main script for feature matching demo
+dataset : there is an example mat data in matchData4, you can replace it with data provided.
 
 If you want to add your own algorithm for comparison, three steps are required:
 1. Create 'YOUR_ALGORITHM_NAME' folder in 'Methods' folder. Then put your code in it.

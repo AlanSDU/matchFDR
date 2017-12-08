@@ -10,10 +10,10 @@ bDisplayCurl = 0;                      % Display curl or not
 bDisplayLabel = 0;                    % Display label or not
 extrapolate_thres = 15;          % Extrapolation of matches for flexible evaluation
 affinity_max = 50;               % maximum value of affinity
-matchDataPath = './matchData4/';  % Path for 'mat' files
+matchDataPath = './matchData/matchTest/';  % Path for 'mat' files
 % 3. building;
 % 4. willow;
-% 5. car&moterbike;
+% Test. Test data;
 % Face. willow.face;
 % CM. application with outlier
 
@@ -137,8 +137,8 @@ for cImg = 1:length(fileList)
             displayFeatureMatching(cdata, X{cImg,cMethod}, cdata.GTbool, methods(cMethod).strName, ...
                 accuracy(cImg,cMethod), bDisplayLabel, bDisplayCurl);
             
-            print(gcf,'-depsc', ['.\pic\',methods(cMethod).strName,'.eps']);
-            saveas(gcf, ['.\pic\',methods(cMethod).strName, '.fig'])
+            print(gcf,'-depsc', ['./pic/',methods(cMethod).strName,'.eps']);
+            saveas(gcf, ['./pic/',methods(cMethod).strName, '.fig'])
         end
     end
     if bDisplayMatching, drawnow; if cImg ~= length(fileList), pause; end; end
